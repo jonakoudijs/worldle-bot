@@ -69,6 +69,7 @@ try:
             with open(png_path, "wb") as f:
                 f.write(resp.content)
             print(f"Saved raster image to {png_path}")
+
             # Proceed to Slack upload if configured
             slack_token = os.environ.get("SLACK_BOT_TOKEN")
             slack_channel = os.environ.get("SLACK_CHANNEL")
