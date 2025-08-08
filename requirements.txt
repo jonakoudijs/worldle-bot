@@ -1,0 +1,6 @@
+requests
+beautifulsoup4
+selenium
+webdriver-manager
+cairosvg
+slack_sdk

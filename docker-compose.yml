@@ -1,0 +1,13 @@
+
+services:
+  worldle-bot:
+    build: .
+    container_name: worldle-bot
+    environment:
+      - PYTHONUNBUFFERED=1
+      - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
+      - SLACK_CHANNEL=${SLACK_CHANNEL}
+      - OUTPUT_DIR=/app/output
+    volumes:
+      # Optional: mount a directory to save results
+      - ./output:/app/output 
