@@ -77,11 +77,8 @@ jobs:
       with:
         images: ${{ env.REGISTRY_DOCKERHUB }}/${{ secrets.DOCKERHUB_USERNAME }}/worldle-bot
         tags: |
-          type=ref,event=branch
-          type=ref,event=pr
-          type=semver,pattern={{version}}
-          type=semver,pattern={{major}}.{{minor}}
-          type=sha,prefix={{branch}}-
+          type=raw,value=latest
+          type=sha,prefix=,suffix=,format=short
           
     - name: Build and push to Docker Hub
       uses: docker/build-push-action@v5
