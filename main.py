@@ -1,17 +1,18 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-import os
 import base64
-import requests
+import os
 from datetime import datetime
 from pathlib import Path
+
+import requests
 from cairosvg import svg2png
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
+from webdriver_manager.chrome import ChromeDriverManager
 
 # Set up Chrome options for headless browsing in container
 options = webdriver.ChromeOptions()
