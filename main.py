@@ -15,13 +15,13 @@ from slack_sdk.errors import SlackApiError
 
 # Set up Chrome options for headless browsing in container
 options = webdriver.ChromeOptions()
-options.add_argument('--headless')
-options.add_argument('--no-sandbox')
-options.add_argument('--disable-dev-shm-usage')
-options.add_argument('--disable-gpu')
-options.add_argument('--window-size=1920,1080')
-options.add_argument('--disable-extensions')
-options.add_argument('--disable-plugins')
+options.add_argument("--headless")
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-dev-shm-usage")
+options.add_argument("--disable-gpu")
+options.add_argument("--window-size=1920,1080")
+options.add_argument("--disable-extensions")
+options.add_argument("--disable-plugins")
 # Keep images enabled to be safe when reading the SVG src
 
 # Initialize the driver with automatic ChromeDriver management
@@ -32,12 +32,14 @@ try:
     print("Loading Worldle page...")
     # Navigate to the page
     driver.get("https://worldle.teuteuf.fr")
-    
+
     # Wait for the page to load and the image to appear
     print("Waiting for country shape image to load...")
     wait = WebDriverWait(driver, 15)
-    img = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "img[alt='country to guess']")))
-    
+    img = wait.until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, "img[alt='country to guess']"))
+    )
+
     # Get the src attribute
     src = img.get_attribute("src")
     print(f"Country shape image URL: {src}")
@@ -77,13 +79,17 @@ try:
                         file=str(png_path),
                         title=f"Worldle {timestamp}",
                         filename=png_path.name,
-                        initial_comment="Het Worldle land van vandaag: https://worldle.teuteuf.fr"
+                        initial_comment="Het Worldle land van vandaag: https://worldle.teuteuf.fr",
                     )
                     print("Uploaded raster image to Slack")
                 except SlackApiError as e:
-                    print(f"Slack upload failed: {e.response['error'] if hasattr(e, 'response') else e}")
+                    print(
+                        f"Slack upload failed: {e.response['error'] if hasattr(e, 'response') else e}"
+                    )
             else:
-                print("SLACK_BOT_TOKEN or SLACK_CHANNEL not set; skipping Slack upload.")
+                print(
+                    "SLACK_BOT_TOKEN or SLACK_CHANNEL not set; skipping Slack upload."
+                )
             # Exit early since we handled raster path; driver will be closed in finally
             raise SystemExit(0)
 
@@ -94,11 +100,11 @@ try:
 
     # Convert to PNG with white background
     svg2png(
-        bytestring=svg_bytes, 
-        write_to=str(png_path), 
-        output_width=1024, 
+        bytestring=svg_bytes,
+        write_to=str(png_path),
+        output_width=1024,
         output_height=1024,
-        background_color='white'
+        background_color="white",
     )
     print(f"Converted to PNG at {png_path}")
 
@@ -113,19 +119,21 @@ try:
                 file=str(png_path),
                 title=f"Worldle {timestamp}",
                 filename=png_path.name,
-                initial_comment="Het Worldle land van vandaag: https://worldle.teuteuf.fr"
+                initial_comment="Het Worldle land van vandaag: https://worldle.teuteuf.fr",
             )
             print("Uploaded PNG to Slack")
         except SlackApiError as e:
-            print(f"Slack upload failed: {e.response['error'] if hasattr(e, 'response') else e}")
+            print(
+                f"Slack upload failed: {e.response['error'] if hasattr(e, 'response') else e}"
+            )
     else:
         print("SLACK_BOT_TOKEN or SLACK_CHANNEL not set; skipping Slack upload.")
-    
+
 except Exception as e:
     print(f"Error: {e}")
     # Print page source for debugging
     print("Page source:")
     print(driver.page_source[:1000])  # First 1000 chars
-    
+
 finally:
     driver.quit()
