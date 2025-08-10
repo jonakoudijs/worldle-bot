@@ -1,3 +1,7 @@
+[![Build Status](https://github.com/jonakoudijs/worldle-bot/actions/workflows/deploy.yml/badge.svg)](https://github.com/jonakoudijs/worldle-bot/actions)
+[![Image Size](https://img.shields.io/docker/image-size/jonakoudijs/worldle-bot/latest.svg)](https://hub.docker.com/r/jonakoudijs/worldle-bot)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 # Worldle Bot
 
 A Python bot that automatically fetches the daily Worldle country shape and uploads it to Slack.
