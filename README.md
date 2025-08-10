@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/jonakoudijs/worldle-bot/actions/workflows/deploy.yml/badge.svg)](https://github.com/jonakoudijs/worldle-bot/actions)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/jonakoudijs/worldle-bot/deploy.yml)](https://github.com/jonakoudijs/worldle-bot/actions)
 [![Image Size](https://img.shields.io/docker/image-size/jonakoudijs/worldle-bot/latest.svg)](https://hub.docker.com/r/jonakoudijs/worldle-bot)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
